@@ -66,9 +66,9 @@ const Header = () => {
                 </a>
               </div>
 
-              <Popover>
+              <Popover >
                 <PopoverTrigger>
-                  <img src={users?.picture} className='h-[35px] w-[35px] rounded-full' alt="user" />
+                  <img src={users?.picture} className='h-[35px] w-[35px] rounded-full bg-white' alt="user" />
                 </PopoverTrigger>
                 <PopoverContent>
                   <h2 className='cursor-pointer' onClick={() => {
@@ -80,7 +80,8 @@ const Header = () => {
                   </h2>
                 </PopoverContent>
               </Popover>
-            </div>
+              </div>
+            
           ) : (
             <Button onClick={() => setOpendia(true)} className="justify-end mr-10 rounded-full bg-yellow-300 text-black">Sign In</Button>
           )}
