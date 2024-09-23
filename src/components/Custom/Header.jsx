@@ -48,7 +48,9 @@ const Header = () => {
     
         <div>
       <div className='p-2 shadow-sm flex justify-between items-center px-5'>
+        <a href="/">
         <img src="/logo.png" alt="my logo" height={100} width={100} />
+        </a>
         <div className='flex'>
           {users ? (
             <div className='flex'>
