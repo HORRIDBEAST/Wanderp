@@ -7,6 +7,7 @@ import GenTrip from './Gen-trip/index.jsx'
 import Header from './components/Custom/Header.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { Toaster } from "@/components/ui/sonner"
+import CheckTrips from './TripHistory/CheckTrips.jsx'
 import See_my_Trips from './view-trip/[tripId]/index.jsx'
 const router=createBrowserRouter([
   {
@@ -21,10 +22,10 @@ const router=createBrowserRouter([
     path:"/see-trip/:tripId",
     element:<See_my_Trips/>
   },
-  // {
-  //   path:"/my-trips",
-  //   element:<CheckTrips/>
-  // },
+  {
+    path:"/my-trips",
+    element:<CheckTrips/>
+  },
 ])
 
 
