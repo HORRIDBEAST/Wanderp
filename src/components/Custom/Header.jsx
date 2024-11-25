@@ -17,13 +17,30 @@ import { useState,useEffect } from "react";
 import { FaGoogle } from "react-icons/fa6";
 import axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
+import { getDocs, collection } from "firebase/firestore";
+import { db } from '@/Service/firebaseConfig'; // Your Firebase config
 // import { Link } from 'react-router-dom';
 const Header = () => {
+  
     const [opendia, setOpendia] = useState(false);
+    const [hasTrips, setHasTrips] = useState(false);
+    const [userTrips, setUserTrips] = useState([]);
   const users = JSON.parse(localStorage.getItem('user'));
   useEffect(() => {
-    // console.log(users)
-  }, []);
+    if (users) {
+      checkUserTrips();
+    }
+  }, [users]);
+
+  const checkUserTrips = async () => {
+    const tripsRef = collection(db, 'AITRIPS');
+    const querySnapshot = await getDocs(tripsRef);
+    if (!querySnapshot.empty) {
+      setHasTrips(true); // User has at least one trip
+      // const tripDoc = querySnapshot.docs[0]; // Assuming the first trip (change logic as per your need)
+      // setTripId(tripDoc.id);
+    }
+  };
 
   const handleLogin = useGoogleLogin({
     onSuccess: (c) => {
@@ -51,22 +68,27 @@ const Header = () => {
         <a href="/">
         <img src="/logo.png" alt="my logo" height={100} width={100} />
         </a>
+        <div className=""></div>
         <div className='flex'>
           {users ? (
             <div className='flex'>
-              <div className='flex'>
+              { hasTrips && (<div className='flex'>
+               
+                <a href={`/track-budget/`}>
+
                 <Button className="rounded-full mr-3">Budget Tracker</Button>
+                
+                </a>
+                
               </div>
-              <div className='flex items-center'>
+            )}
                 <a href='/create-trip'>
                   <Button variant="destructive" className="mr-3 rounded-xl">Create Trip</Button>
                 </a>
-              </div>
-              <div className='flex items-center'>
                 <a href='/my-trips'>
                   <Button variant="destructive" className="mr-3 rounded-xl">My Trips</Button>
                 </a>
-              </div>
+             
 
               <Popover >
                 <PopoverTrigger>

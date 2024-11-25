@@ -30,7 +30,8 @@ const CheckTrips = () => {
     }
   return (
     <div className='px-5 sm:px-10 md:px-32 lg:px-56 xl:px-72 mt-10 justify-between text-start'><h2 className='font-bold text-3xl mb-10'>My Trips are :-</h2>
-    <div className='grid grid-col-2 md:grid-cols-3 gap-5 mt-5'>
+   <div className="w-10/12  mx-auto">
+    <div className='grid grid-col-2 md:grid-cols-3 gap-5 mt-5 '>
         {userTrips.length>0 ? userTrips.map((trip,index)=>(
             <UsertripCard trip={trip} key={index}/>
         )) :
@@ -39,7 +40,7 @@ const CheckTrips = () => {
          ))
         }
     </div>
-    
+    </div>
     </div>
   )
 }

@@ -9,6 +9,10 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { Toaster } from "@/components/ui/sonner"
 import CheckTrips from './TripHistory/CheckTrips.jsx'
 import See_my_Trips from './view-trip/[tripId]/index.jsx'
+import Budget from './Budget-tracker/index.jsx/'
+import { store } from './Budget-tracker/Redux/store.js';
+import { Provider } from 'react-redux';
+import TG from "./Budget-tracker/travelguru.jsx"
 const router=createBrowserRouter([
   {
     path:"/",
@@ -26,15 +30,27 @@ const router=createBrowserRouter([
     path:"/my-trips",
     element:<CheckTrips/>
   },
+  {
+    path:"/track-budget/",
+    element: <Budget/>
+
+  },
+  {
+    path:"track-budget/travel-guru",
+    element: <TG/>
+    
+  },
 ])
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+     <Provider store={store}>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}>
     <Header/>
     <Toaster />
     <RouterProvider router={router}/>
     </GoogleOAuthProvider>
+    </Provider>
   </StrictMode>,
 )
